@@ -1,5 +1,7 @@
 import sys
 from typing import List
+from bs4 import BeautifulSoup
+import requests
 
 from PySide6.QtWidgets import (QApplication, QWidget, QComboBox, QDialog, QDialogButtonBox, QGridLayout, QGroupBox, QFormLayout, QHBoxLayout, QLabel, QLineEdit, QMenu, QMenuBar, QPushButton, QSpinBox, QTextEdit, QVBoxLayout, QMainWindow, QMessageBox)
 
@@ -34,27 +36,34 @@ class MainWindow(QMainWindow):
 
         # Load components
         self.workshop_link_input_box: WorkshopLinkInputBox = WorkshopLinkInputBox()
-        self.edit_file_btn_: EditFileButton = EditFileButton()
+        self.edit_file_btn: EditFileButton = EditFileButton()
+        self.edit_file_btn.resize(50, 30)
         self.output_mod_list_btn: OutputModListButton = OutputModListButton()
 
         # Add components to the button layout
-        button_layout.addWidget(self.edit_file_btn_)
+        button_layout.addWidget(self.edit_file_btn)
         button_layout.addWidget(self.output_mod_list_btn)
 
         # Add components to the row layout
         row_1_layout.addWidget(self.workshop_link_input_box)
         row_1_layout.addLayout(button_layout)
 
-        # Create the top label
+        # Create the titles label
+        title_label: QLabel = QLabel()
+        title_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        title_label.setStyleSheet("font-size: 16px; font-weight: bold;")  
+        title_label.setText("Project Zomboid Mod Loader")
+
+        # Create the instructions label
         instructions_label: QLabel = QLabel()
-        instructions_label.setAlignment(Qt.AlignmentFlag.AlignLeft)
+        instructions_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         instructions_label.setStyleSheet("font-size: 14px; margin: 10px;")
         instructions_label.setText("""
     <div style="font-size: 16px; font-weight: bold; text-align: center; margin-bottom: 8px;">
         Instructions
     </div>
     
-    <p>First, paste the workshop links in the text box below, separate them by a new line.</p>
+    <p><b>First</b>, paste the workshop links in the text box below, separate them by a new line.</p>
     <p>After you paste the links of the mods you want, decide what you want to do by pressing one of the buttons.</p>
 
     <p><b>Editing the .ini file:</b></p>
@@ -72,11 +81,12 @@ class MainWindow(QMainWindow):
 
 
         # Construct the main layout
+        layout.addWidget(title_label)
         layout.addWidget(instructions_label)
         layout.addLayout(row_1_layout)
 
         # Connect the buttons to their respective functions
-        self.edit_file_btn_.clicked.connect(self.extract_links)
+        #self.edit_file_btn.clicked.connect(self.extract_links)
         self.output_mod_list_btn.clicked.connect(self.extract_links)
 
 
@@ -108,9 +118,29 @@ class OutputModListButton(QPushButton):
 
 def main():
     app: QApplication = QApplication(sys.argv)  # Creates the application event loop
+
+    app.setStyleSheet("""
+    QPushButton {
+        background-color: #355E3B;
+        color: white;
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+    QPushButton:hover {
+        background-color: #006400;
+    }
+    QPushButton:pressed {
+        background-color: #00563B;
+    }
+    """)
+
     window: MainWindow = MainWindow()  # Create the main window
     window.show()  # Show the main window
     sys.exit(app.exec())  # Start the event loop
+    print("Hello World")
+
+
 
 
 
