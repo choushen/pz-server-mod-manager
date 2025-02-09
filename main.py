@@ -5,7 +5,7 @@ from PySide6.QtWidgets import (QApplication, QWidget, QComboBox, QDialog,
                                QFormLayout, QHBoxLayout, QLabel, QLineEdit,
                                QMenu, QMenuBar, QPushButton, QSpinBox,
                                QTextEdit, QVBoxLayout, QMainWindow)
-
+from PySide6.QtCore import Qt
 
 
 class MainWindow(QMainWindow):
@@ -27,12 +27,17 @@ class MainWindow(QMainWindow):
 
         # Textbox and buttons layout
         row_1_layout: QHBoxLayout = QHBoxLayout()
+
+        # Button layout
         button_layout: QVBoxLayout = QVBoxLayout()
+        button_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        button_layout.setSpacing(5)
 
         # Load components
         self.workshop_link_input_box: WorkshopLinkInputBox = WorkshopLinkInputBox()
         self.edit_file_btn_: EditFileButton = EditFileButton()
         self.output_mod_list_btn: OutputModListButton = OutputModListButton()
+        
 
         # Add components to the button layout
         button_layout.addWidget(self.edit_file_btn_)
@@ -43,6 +48,12 @@ class MainWindow(QMainWindow):
         row_1_layout.addLayout(button_layout)
 
         # Construct the main layout
+        top_label: QLabel = QLabel("Project Zomboid Mod Loader")
+        top_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        top_label.setStyleSheet("font-size: 20px; font-weight: bold;")
+
+        layout.addWidget(top_label)
+
         layout.addLayout(row_1_layout)
 
         # Connect the buttons to their respective functions
