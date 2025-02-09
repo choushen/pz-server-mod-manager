@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import requests
 
 from PySide6.QtWidgets import (QApplication, QWidget, QComboBox, QDialog, QDialogButtonBox, QGridLayout, QGroupBox, QFormLayout, QHBoxLayout, QLabel, QLineEdit, QMenu, QMenuBar, QPushButton, QSpinBox, QTextEdit, QVBoxLayout, QMainWindow, QMessageBox)
-
+from PySide6.QtGui import QTextOption
 from PySide6.QtCore import Qt
 
 
@@ -59,31 +59,42 @@ class MainWindow(QMainWindow):
         instructions_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         instructions_label.setStyleSheet("font-size: 14px; margin: 10px;")
         instructions_label.setText("""
-    <div style="font-size: 16px; font-weight: bold; text-align: center; margin-bottom: 8px;">
-        Instructions
-    </div>
-    
-    <p><b>First</b>, paste the workshop links in the text box below, separate them by a new line.</p>
-    <p>After you paste the links of the mods you want, decide what you want to do by pressing one of the buttons.</p>
+            <div style="font-size: 16px; font-weight: bold; text-align: center; margin-bottom: 8px;">
+                Instructions
+            </div>
+            
+            <p><b>First</b>, paste the workshop links in the text box below, separate them by a new line.</p>
+            <p>After you paste the links of the mods you want, decide what you want to do by pressing one of the buttons.</p>
 
-    <p><b>Editing the .ini file:</b></p>
-    <ul>
-        <li>Click <b>"Upload and Edit .ini File"</b> to upload and edit the .ini file.</li>
-        <li>The .ini file will be modified and saved in its current location.</li>
-    </ul>
+            <p><b>**IN DEVELOPMENT**Editing the .ini file:</b></p>
+            <ul>
+                <li>Click <b>"Upload and Edit .ini File"</b> to upload and edit the .ini file.</li>
+                <li>The .ini file will be modified and saved in its current location.</li>
+            </ul>
 
-    <p><b>Outputting the mod list:</b></p>
-    <ul>
-        <li>Click <b>"Output Mod List"</b> to generate a list of mod names and workshop IDs.</li>
-        <li>You can copy and paste this list for further use.</li>
-    </ul>
-""")
+            <p><b>Outputting the mod list:</b></p>
+            <ul>
+                <li>Click <b>"Output Mod List"</b> to generate a list of mod names and workshop IDs.</li>
+                <li>You can copy and paste this list for further use.</li>
+            </ul>
+        """)
+
+        # Label for displaying the output
+        self.output_box: QTextEdit = QTextEdit()
+        self.output_box.setAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.output_box.setText("Output will be displayed here.")
+        self.output_box.setReadOnly(True)
+        self.output_box.setStyleSheet("background-color: #f0f0f0; padding: 10px; border-radius: 8px; color: black;")
+        self.output_box.setWordWrapMode(QTextOption.WrapAtWordBoundaryOrAnywhere)
+        self.output_box.setMaximumHeight(50)  # Limits vertical expansion
 
 
         # Construct the main layout
         layout.addWidget(title_label)
         layout.addWidget(instructions_label)
         layout.addLayout(row_1_layout)
+        layout.addWidget(self.output_box)
+
 
         # Connect the buttons to their respective functions
         #self.edit_file_btn.clicked.connect(self.extract_links)
@@ -92,7 +103,11 @@ class MainWindow(QMainWindow):
 
     def extract_links(self) -> None:
             links: list[str] = self.workshop_link_input_box.get_text()
-            print("Extracted links:", links)  # Simulating file processing
+            mystr: str = "WorkshopItems="
+            for link in links:
+                workshop_id= link.split("/")[5].strip("?id=")
+                mystr += workshop_id + ";"
+            self.output_box.setText(mystr)
         
 
 class WorkshopLinkInputBox(QTextEdit):
@@ -138,7 +153,7 @@ def main():
     window: MainWindow = MainWindow()  # Create the main window
     window.show()  # Show the main window
     sys.exit(app.exec())  # Start the event loop
-    print("Hello World")
+
 
 
 
