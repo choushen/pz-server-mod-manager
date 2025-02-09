@@ -32,18 +32,31 @@ class MainWindow(QMainWindow):
         layout.addWidget(self.workshop_link_input_box)
         layout.addWidget(self.edit_file_btn_)
         layout.addWidget(self.output_mod_list_btn)
+
+        # Connect the buttons to their respective functions
+        self.edit_file_btn_.clicked.connect(self.extract_links)
+        self.output_mod_list_btn.clicked.connect(self.extract_links)
+
+    def extract_links(self) -> None:
+            links: list[str] = self.workshop_link_input_box.get_text()
+            print("Extracted links:", links)  # Simulating file processing
         
 
-class WorkshopLinkInputBox(QLineEdit):
+class WorkshopLinkInputBox(QTextEdit):
     def __init__(self) -> None:
         super().__init__()
         self.setPlaceholderText("Enter the workshop link here")
+    
+    def get_text(self) -> str:
+        my_string_list: str = self.toPlainText().strip().split("\n")
+        return my_string_list
 
 
 class EditFileButton(QPushButton):
     def __init__(self) -> None:
         super().__init__()
         self.setText("Edit File")
+
 
 class OutputModListButton(QPushButton):
     def __init__(self) -> None:
