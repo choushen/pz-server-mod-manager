@@ -52,7 +52,7 @@ class MainWindow(QMainWindow):
         title_label: QLabel = QLabel()
         title_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         title_label.setStyleSheet("font-size: 16px; font-weight: bold;")  
-        title_label.setText("Project Zomboid Mod Loader")
+        title_label.setText("Project Zomboid Mod Loader v0.1")
 
         # Create the instructions label
         instructions_label: QLabel = QLabel()
