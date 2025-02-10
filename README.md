@@ -29,7 +29,6 @@ This project is still in the early stages of development. The GUI is not yet imp
 
 - [ ] placeholder
 
-
 ## Description
 
 Just paste the workshop links of the mods you want to install, select your *.ini file and click the 'Go' button. It will automatically add the mod IDs and workshop IDs to the selected *.ini file.
