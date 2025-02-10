@@ -5,11 +5,29 @@
 This project is still in the early stages of development. The GUI is not yet implemented and the logic is still being worked on. I created this because I wanted to automate the process of adding mods to the `server.ini` file for Project Zomboid. I will be updating this project as I work on it. The code currently lives in 1 file (`main.py`) and is not yet organized into separate files. I will be working on that as well.
 
 ## TODO
+
+### Must Have
+
 - [ ] Error handling for duplicate links
 - [ ] Error handling for invalid links
 - [ ] Error handling for invalid entries
 - [ ] Error handling for empty entries
+
+### Should Have
+
 - [ ] Make it easier to paste multiple links
+- [ ] Highlight the links that are invalid
+- [ ] Highlight the links that are duplicates
+- [ ] Highlight the links that are empty
+
+### Could Have
+
+- [ ] A way to look up mods using the steam api
+- [ ] A way to add the mods by clicking a button next to the mod in the list
+
+### Won't Have
+
+- [ ] placeholder
 
 
 ## Description
