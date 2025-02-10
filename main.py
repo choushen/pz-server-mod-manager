@@ -103,11 +103,15 @@ class MainWindow(QMainWindow):
 
     def extract_links(self) -> None:
             links: list[str] = self.workshop_link_input_box.get_text()
-            mystr: str = "WorkshopItems="
+            workshop_id_str: str = "WorkshopItems="
+            # mod_name_str: str = "Mods="
+            
+            # Call bs4 to extract the workshop ID from the link
+            
             for link in links:
                 workshop_id= link.split("/")[5].strip("?id=")
-                mystr += workshop_id + ";"
-            self.output_box.setText(mystr)
+                workshop_id_str += workshop_id + ";"
+            self.output_box.setText(workshop_id_str)
         
 
 class WorkshopLinkInputBox(QTextEdit):
@@ -132,28 +136,37 @@ class OutputModListButton(QPushButton):
         self.setText("Output Mod List")
 
 def main():
-    app: QApplication = QApplication(sys.argv)  # Creates the application event loop
+    # app: QApplication = QApplication(sys.argv)  # Creates the application event loop
 
-    app.setStyleSheet("""
-    QPushButton {
-        background-color: #355E3B;
-        color: white;
-        padding: 10px;
-        border-radius: 8px;
-        font-size: 16px;
-    }
-    QPushButton:hover {
-        background-color: #006400;
-    }
-    QPushButton:pressed {
-        background-color: #00563B;
-    }
-    """)
+    # app.setStyleSheet("""
+    # QPushButton {
+    #     background-color: #355E3B;
+    #     color: white;
+    #     padding: 10px;
+    #     border-radius: 8px;
+    #     font-size: 16px;
+    # }
+    # QPushButton:hover {
+    #     background-color: #006400;
+    # }
+    # QPushButton:pressed {
+    #     background-color: #00563B;
+    # }
+    # """)
 
-    window: MainWindow = MainWindow()  # Create the main window
-    window.show()  # Show the main window
-    sys.exit(app.exec())  # Start the event loop
+    # window: MainWindow = MainWindow()  # Create the main window
+    # window.show()  # Show the main window
+    # sys.exit(app.exec())  # Start the event loop
 
+    # XPATH: //div[@class="workshopItemDescription"]//br//following-sibling::text()[contains(., "Mod ID:")]
+
+    url: str = "https://steamcommunity.com/sharedfiles/filedetails/?id=3413150945"
+    page: requests.Response = requests.get(url)
+    print(page.status_code)
+    print(page.text)
+    print(url) 
+
+    
 
 
 
