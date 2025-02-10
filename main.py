@@ -103,11 +103,15 @@ class MainWindow(QMainWindow):
 
     def extract_links(self) -> None:
             links: list[str] = self.workshop_link_input_box.get_text()
-            mystr: str = "WorkshopItems="
+            workshop_id_str: str = "WorkshopItems="
+            # mod_name_str: str = "Mods="
+            
+            # Call bs4 to extract the workshop ID from the link
+            
             for link in links:
                 workshop_id= link.split("/")[5].strip("?id=")
-                mystr += workshop_id + ";"
-            self.output_box.setText(mystr)
+                workshop_id_str += workshop_id + ";"
+            self.output_box.setText(workshop_id_str)
         
 
 class WorkshopLinkInputBox(QTextEdit):
@@ -154,6 +158,17 @@ def main():
     window.show()  # Show the main window
     sys.exit(app.exec())  # Start the event loop
 
+    # XPATH: //div[@class="workshopItemDescription"]//br//following-sibling::text()[contains(., "Mod ID:")]
+
+    # url: str = "https://steamcommunity.com/sharedfiles/filedetails/?id=3413150945"
+    # page: requests.Response = requests.get(url)
+    # print("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwdasdfuenroivdfasdk,[adaklwdqwdkap[dasp]]")
+    # print(page.status_code)
+    # print(page.text)
+    # print(url)
+    # print("Hello JY")
+
+    
 
 
 
