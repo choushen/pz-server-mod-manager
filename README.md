@@ -4,6 +4,14 @@
 
 This project is still in the early stages of development. The GUI is not yet implemented and the logic is still being worked on. I created this because I wanted to automate the process of adding mods to the `server.ini` file for Project Zomboid. I will be updating this project as I work on it. The code currently lives in 1 file (`main.py`) and is not yet organized into separate files. I will be working on that as well.
 
+## TODO
+- [ ] Error handling for duplicate links
+- [ ] Error handling for invalid links
+- [ ] Error handling for invalid entries
+- [ ] Error handling for empty entries
+- [ ] Make it easier to paste multiple links
+
+
 ## Description
 
 Just paste the workshop links of the mods you want to install, select your *.ini file and click the 'Go' button. It will automatically add the mod IDs and workshop IDs to the selected *.ini file.
