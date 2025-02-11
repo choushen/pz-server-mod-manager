@@ -1,5 +1,28 @@
 # Project Zomboid Mod Loader
 
+## How to Use
+
+<div style="font-size: 16px; font-weight: bold; text-align: center; margin-bottom: 8px;">
+    Instructions
+</div>
+
+<p><b>First</b>, paste the workshop links in the text box below, separate them by a new line.</p>
+<p>After you paste the links of the mods you want, decide what you want to do by pressing one of the buttons.</p>
+
+<p><b>**IN DEVELOPMENT**Editing the .ini file:</b></p>
+<ul>
+    <li>Click <b>"Upload and Edit .ini File"</b> to upload and edit the .ini file.</li>
+    <li>The .ini file will be modified and saved in its current location.</li>
+</ul>
+
+<p><b>Outputting the mod list:</b></p>
+<ul>
+    <li>Click <b>"Output Mod List"</b> to generate a list of mod names and workshop IDs.</li>
+    <li>You can copy and paste this list for further use.</li>
+</ul>
+
+<img src="demo_01.png">
+
 ## Important Notes
 
 This project is still in the early stages of development. The GUI is not yet implemented and the logic is still being worked on. I created this because I wanted to automate the process of adding mods to the `server.ini` file for Project Zomboid. I will be updating this project as I work on it. The code currently lives in 1 file (`main.py`) and is not yet organized into separate files. I will be working on that as well.
