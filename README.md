@@ -30,7 +30,8 @@ This project is still in the early stages of development. The GUI is not yet imp
 ## TODO
 
 ### Must Have
-
+- [ / ] Output mod names (Completed - 11/02/2021)
+- [ ]  Edit the .ini file directly, copy the existing file and append "backup" to the name and drop the new file in the same location
 - [ ] Error handling for duplicate links
 - [ ] Error handling for invalid links
 - [ ] Error handling for invalid entries
