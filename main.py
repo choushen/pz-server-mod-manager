@@ -1,8 +1,9 @@
 import sys
 from typing import List
-from bs4 import BeautifulSoup
 import requests
-
+from requests_html import HTMLSession, HTMLResponse
+from lxml import html
+from lxml.html import HtmlElement
 from PySide6.QtWidgets import (QApplication, QWidget, QComboBox, QDialog, QDialogButtonBox, QGridLayout, QGroupBox, QFormLayout, QHBoxLayout, QLabel, QLineEdit, QMenu, QMenuBar, QPushButton, QSpinBox, QTextEdit, QVBoxLayout, QMainWindow, QMessageBox)
 from PySide6.QtGui import QTextOption
 from PySide6.QtCore import Qt
@@ -86,7 +87,7 @@ class MainWindow(QMainWindow):
         self.output_box.setReadOnly(True)
         self.output_box.setStyleSheet("background-color: #f0f0f0; padding: 10px; border-radius: 8px; color: black;")
         self.output_box.setWordWrapMode(QTextOption.WrapAtWordBoundaryOrAnywhere)
-        self.output_box.setMaximumHeight(50)  # Limits vertical expansion
+        self.output_box.setMaximumHeight(65)  # Limits vertical expansion
 
 
         # Construct the main layout
@@ -102,16 +103,21 @@ class MainWindow(QMainWindow):
 
 
     def extract_links(self) -> None:
+            headers: dict  = {"User-Agent": "Mozilla/5.0"}  # Avoid bot detection
             links: list[str] = self.workshop_link_input_box.get_text()
             workshop_id_str: str = "WorkshopItems="
-            # mod_name_str: str = "Mods="
-            
-            # Call bs4 to extract the workshop ID from the link
+            mod_name_str: str = "Mods="
+            xpath: str =  "//div[@class=\"workshopItemDescription\"]//br//following-sibling::text()[contains(., \"Mod ID:\")]"
             
             for link in links:
-                workshop_id= link.split("/")[5].strip("?id=")
+                workshop_id = link.split("/")[5].strip("?id=")
                 workshop_id_str += workshop_id + ";"
-            self.output_box.setText(workshop_id_str)
+                response: requests.Response = requests.get(link, headers=headers)
+                tree: HtmlElement = html.fromstring(response.content)
+                mod_id: list[str] = tree.xpath(xpath)
+                mod_name_str += mod_id[0].split("Mod ID: ")[-1] + ";"
+
+            self.output_box.setText(f"{workshop_id_str}\n{mod_name_str}")
         
 
 class WorkshopLinkInputBox(QTextEdit):
@@ -136,35 +142,31 @@ class OutputModListButton(QPushButton):
         self.setText("Output Mod List")
 
 def main():
-    # app: QApplication = QApplication(sys.argv)  # Creates the application event loop
+    app: QApplication = QApplication(sys.argv)  # Creates the application event loop
 
-    # app.setStyleSheet("""
-    # QPushButton {
-    #     background-color: #355E3B;
-    #     color: white;
-    #     padding: 10px;
-    #     border-radius: 8px;
-    #     font-size: 16px;
-    # }
-    # QPushButton:hover {
-    #     background-color: #006400;
-    # }
-    # QPushButton:pressed {
-    #     background-color: #00563B;
-    # }
-    # """)
+    app.setStyleSheet("""
+    QPushButton {
+        background-color: #355E3B;
+        color: white;
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+    QPushButton:hover {
+        background-color: #006400;
+    }
+    QPushButton:pressed {
+        background-color: #00563B;
+    }
+    """)
 
-    # window: MainWindow = MainWindow()  # Create the main window
-    # window.show()  # Show the main window
-    # sys.exit(app.exec())  # Start the event loop
+    window: MainWindow = MainWindow()  # Create the main window
+    window.show()  # Show the main window
+    sys.exit(app.exec())  # Start the event loop
 
-    # XPATH: //div[@class="workshopItemDescription"]//br//following-sibling::text()[contains(., "Mod ID:")]
 
-    url: str = "https://steamcommunity.com/sharedfiles/filedetails/?id=3413150945"
-    page: requests.Response = requests.get(url)
-    print(page.status_code)
-    print(page.text)
-    print(url) 
+
+
 
     
 
