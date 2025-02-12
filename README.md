@@ -44,7 +44,7 @@ I will be updating this project as I work on it. The code currently lives in **o
 
 ### Windows
 
-Download the .exe from the dist folder and run it.
+Download the .exe run it.
 
 ### **Clone, Build, and Run the Project**
 
