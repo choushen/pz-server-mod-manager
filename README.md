@@ -1,38 +1,15 @@
 # Project Zomboid Mod Loader
 
-## How to Use
-
-
-
-<div style="font-size: 16px; font-weight: bold; text-align: center; margin-bottom: 8px;">
-    Instructions
-</div>
-
-<p><b>First</b>, paste the workshop links in the text box below, separate them by a new line.</p>
-<p>After you paste the links of the mods you want, decide what you want to do by pressing one of the buttons.</p>
-
-<p><b>**IN DEVELOPMENT**Editing the .ini file:</b></p>
-<ul>
-    <li>Click <b>"Upload and Edit .ini File"</b> to upload and edit the .ini file.</li>
-    <li>The .ini file will be modified and saved in its current location.</li>
-</ul>
-
-<p><b>Outputting the mod list:</b></p>
-<ul>
-    <li>Click <b>"Output Mod List"</b> to generate a list of mod names and workshop IDs.</li>
-    <li>You can copy and paste this list for further use.</li>
-</ul>
-
-<img src="demo_01.png">
+---
 
 ## Important Notes
 
 This project is still in the early stages of development. The GUI is not yet implemented and the logic is still being worked on. I created this because I wanted to automate the process of adding mods to the `server.ini` file for Project Zomboid. I will be updating this project as I work on it. The code currently lives in 1 file (`main.py`) and is not yet organized into separate files. I will be working on that as well.
 
-## TODO
+### TODO
 
 ### Must Do
-[ ] Add support for vehicle IDs (?)
+[ / ] Add support for scraping vehicle ids
 [ ] Remove unused packages
 [ ] Deadwood the codebase
 [ / ] Output mod names (Done)
@@ -58,9 +35,82 @@ This project is still in the early stages of development. The GUI is not yet imp
 
 - [ ] placeholder
 
-## Description
+---
 
-Just paste the workshop links of the mods you want to install, select your *.ini file and click the 'Go' button. It will automatically add the mod IDs and workshop IDs to the selected *.ini file.
+## How to Launch
+
+### **Instructions to Clone, Build, and Run the Project**
+
+Follow these steps to **pull your repository, install dependencies, and run the application**.
+
+#### **1. Clone the Repository**
+Open a terminal (Command Prompt, PowerShell, or macOS/Linux terminal) and run:
+
+```bash
+git clone git@github.com:choushen/pz-server-mod-manager.git
+```
+This will create a folder named `pz-server-mod-manager`.
+
+#### **2. Navigate into the Project Directory**
+```bash
+cd pz-server-mod-manager
+```
+
+#### **3. Create a Virtual Environment (Recommended)**
+To isolate dependencies, create a virtual environment:
+
+##### **Windows (PowerShell)**
+```powershell
+python -m venv venv
+venv\Scripts\activate
+```
+
+##### **macOS/Linux**
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+#### **4. Install Dependencies**
+Ensure you have all required packages installed:
+
+```bash
+pip install -r requirements.txt
+```
+
+If `requirements.txt` doesn’t exist, install manually:
+
+```bash
+pip install requests requests-html lxml PySide6
+```
+
+#### **5. Run the Application**
+Execute the main script:
+
+```bash
+python main.py
+```
+
+---
+
+## How to Use
+
+<p><b>First</b>, paste the workshop links in the text box below, separate them by a new line.</p>
+<p>After you paste the links of the mods you want, decide what you want to do by pressing one of the buttons.</p>
+
+<p><b>**IN DEVELOPMENT**Editing the .ini file:</b></p>
+<ul>
+    <li>Click <b>"Upload and Edit .ini File"</b> to upload and edit the .ini file.</li>
+    <li>The .ini file will be modified and saved in its current location.</li>
+</ul>
+
+<p><b>Outputting the mod list:</b></p>
+<ul>
+    <li>Click <b>"Output Mod List"</b> to generate a list of mod names and workshop IDs.</li>
+    <li>You can copy and paste this list for further use.</li>
+</ul>
+
+<img src="demo_01.png">
 
 ---
 
@@ -86,7 +136,6 @@ Parse the returned data and extract the Mod ID and Workshop ID from the HTML and
 Read the selected *.ini file, find the following lines:
 
 ```ini
-Vehicle
 Mods=Name1l;Name2;Name3;
 WorkshopItems=123456;789101112;
 ```
