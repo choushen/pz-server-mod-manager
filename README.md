@@ -9,6 +9,7 @@ This project is still in the early stages of development. The GUI is not yet imp
 ### TODO
 
 #### Must Do
+
 [ / ] Add support for scraping vehicle ids
 [ ] Remove unused packages
 [ ] Deadwood the codebase
