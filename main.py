@@ -107,23 +107,27 @@ class MainWindow(QMainWindow):
             links: list[str] = self.workshop_link_input_box.get_text()
             workshop_id_str: str = "WorkshopItems="
             mod_name_str: str = "Mods="
-            xpath: str =  "//div[@class=\"workshopItemDescription\"]//br//following-sibling::text()[contains(., \"Mod ID:\")]"
+            vehicle_id_str: str = "VehicleIDs="
+            mod_id_xpath: str =  "//div[@class=\"workshopItemDescription\"]//br//following-sibling::text()[contains(., \"Mod ID:\")]"
+            vehicle_id_xpath: str = "//div[@class=\"workshopItemDescription\"]//br//following-sibling::text()[contains(., \"Vehicle IDs:\")]"
             
             for link in links:
-                workshop_id = link.split("/")[5].strip("?id=")
+                workshop_id: str = link.split("/")[5].strip("?id=")
                 workshop_id_str += workshop_id + ";"
                 response: requests.Response = requests.get(link, headers=headers)
                 tree: HtmlElement = html.fromstring(response.content)
-                mod_id: list[str] = tree.xpath(xpath)
+                mod_id: list[str] = tree.xpath(mod_id_xpath)
                 mod_name_str += mod_id[0].split("Mod ID: ")[-1] + ";"
+                vehicle_id: list[str] = tree.xpath(vehicle_id_xpath)
+                vehicle_id_str += vehicle_id[0].split("Vehicle IDs: ")[-1].replace(', ', ";") + ";"
 
-            self.output_box.setText(f"{workshop_id_str}\n{mod_name_str}")
+            self.output_box.setText(f"{vehicle_id_str}\n{workshop_id_str}\n{mod_name_str}")
         
 
 class WorkshopLinkInputBox(QTextEdit):
     def __init__(self) -> None:
         super().__init__()
-        self.setPlaceholderText("e.g. https://steamcommunity.com/sharedfiles/filedetails/?id=3413150945\n       https://steamcommunity.com/sharedfiles/filedetails/?id=3413150945")
+        self.setPlaceholderText("e.g. https://steamcommunity.com/sharedfiles/filedetails/?id=3413150945\n       https://steamcommunity.com/sharedfiles/filedetails/?id=3409287192")
     
     def get_text(self) -> str:
         my_string_list: str = self.toPlainText().strip().split("\n")

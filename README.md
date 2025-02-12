@@ -32,6 +32,7 @@ This project is still in the early stages of development. The GUI is not yet imp
 ## TODO
 
 ### Must Do
+[ ] Add support for vehicle IDs (?)
 [ ] Remove unused packages
 [ ] Deadwood the codebase
 [ / ] Output mod names (Done)
@@ -85,6 +86,7 @@ Parse the returned data and extract the Mod ID and Workshop ID from the HTML and
 Read the selected *.ini file, find the following lines:
 
 ```ini
+Vehicle
 Mods=Name1l;Name2;Name3;
 WorkshopItems=123456;789101112;
 ```
