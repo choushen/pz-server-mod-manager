@@ -38,6 +38,9 @@ If anybody else finds this useful and wants to pull and improve it, feel free to
 - [ ] Highlight the links that are duplicates
 
 ### **Could Have**
+- [ ] Extract mods from an .ini file to paste to a friend
+- [ ] Copy mods from server a to server b
+- [ ] Copy mods from singleplayer to multiplayer server
 - [ ] A way to look up mods using the Steam API
 - [ ] A way to add mods by clicking a button next to the mod in the list
 
