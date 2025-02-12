@@ -87,7 +87,7 @@ class MainWindow(QMainWindow):
         self.output_box.setReadOnly(True)
         self.output_box.setStyleSheet("background-color: #f0f0f0; padding: 10px; border-radius: 8px; color: black;")
         self.output_box.setWordWrapMode(QTextOption.WrapAtWordBoundaryOrAnywhere)
-        self.output_box.setMaximumHeight(65)  # Limits vertical expansion
+        self.output_box.setMaximumHeight(75)  # Limits vertical expansion
 
 
         # Construct the main layout
