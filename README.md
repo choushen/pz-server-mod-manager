@@ -12,6 +12,8 @@ I will be updating this project as I work on it. The code currently lives in **o
 
 It does what I want it to do for now. I might revisit the project to clean it up a bit and add functionality to the button that updates the .ini file. 
 
+If anybody else finds this useful and wants to pull and improve it, feel free to do so. 
+
 ---
 
 ## **TODO**
@@ -155,7 +157,3 @@ python main.py
 - **File upload** button for selecting the `.ini` file.
 - **Textbox** to display the output.
 - **Progress bar** to show the process progress.
-
----
-
-If anybody finds this useful and wants to pull and improve it, feel free to do so. 
