@@ -4,11 +4,13 @@
 
 ## **Important Notes**
 
-This project is still in the early stages of development. The GUI is not yet implemented, and the logic is still being worked on. 
+This project is still in the early stages of development.
 
-I created this because I wanted to automate the process of adding mods to the `server.ini` file for Project Zomboid. 
+I created this because I wanted to automate adding mods to the `server.ini` file for Project Zomboid. I know an in-game mod manager exists, but for my use-case I needed something that could do exactly what this program does. I didn't bother checking if anything else existed because I just wanted to practice making something with PyQT as it had been a while.  
 
 I will be updating this project as I work on it. The code currently lives in **one file** (`main.py`) and is not yet organized into separate files. I will be working on that as well.
+
+It does what I want it to do for now. I might revisit the project to clean it up a bit and add functionality to the button that updates the .ini file. 
 
 ---
 
@@ -19,13 +21,13 @@ I will be updating this project as I work on it. The code currently lives in **o
 - [ ] Remove unused packages
 - [ ] Deadwood the codebase
 - [x] Output mod names **(Done)**
-- [ ] Edit the `.ini` file directly, copy the existing file, append `"backup"` to the name, and drop the new file in the same location
 - [ ] Error handling for duplicate links
 - [ ] Error handling for invalid links
 - [ ] Error handling for invalid entries
 - [ ] Error handling for empty entries
 
 ### **Should Have**
+- [ ] Edit the `.ini` file directly, copy the existing file, append `"backup"` to the name, and drop the new file in the same location
 - [ ] Add some caching (?)
 - [ ] Make it easier to paste multiple links
 - [ ] Highlight the links that are invalid/empty
