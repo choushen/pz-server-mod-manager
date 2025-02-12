@@ -1,10 +1,3 @@
-### **Fixed Markdown**
-I’ve cleaned up the markdown and corrected several errors, which I will explain below.
-
----
-
-## **Fixed Markdown**
-```md
 # Project Zomboid Mod Loader
 
 ---
