@@ -149,4 +149,3 @@ python main.py
 - **File upload** button for selecting the `.ini` file.
 - **Textbox** to display the output.
 - **Progress bar** to show the process progress.
-```
