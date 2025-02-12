@@ -20,6 +20,8 @@ If anybody else finds this useful and wants to pull and improve it, feel free to
 
 ### **Must Do**
 - [x] Add support for scraping vehicle IDs
+- [ ] Write tests for methods
+- [ ] Move relevant methods into respective files and folders
 - [ ] Remove unused packages
 - [ ] Deadwood the codebase
 - [x] Output mod names **(Done)**
