@@ -8,7 +8,7 @@ This project is still in the early stages of development. The GUI is not yet imp
 
 ### TODO
 
-### Must Do
+#### Must Do
 [ / ] Add support for scraping vehicle ids
 [ ] Remove unused packages
 [ ] Deadwood the codebase
@@ -19,19 +19,19 @@ This project is still in the early stages of development. The GUI is not yet imp
 [ ] Error handling for invalid entries
 [ ] Error handling for empty entries
 
-### Should Have
+#### Should Have
 
 - [ ] Make it easier to paste multiple links
 - [ ] Highlight the links that are invalid
 - [ ] Highlight the links that are duplicates
 - [ ] Highlight the links that are empty
 
-### Could Have
+#### Could Have
 
 - [ ] A way to look up mods using the steam api
 - [ ] A way to add the mods by clicking a button next to the mod in the list
 
-### Won't Have
+#### Won't Have
 
 - [ ] placeholder
 
