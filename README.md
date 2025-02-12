@@ -155,3 +155,7 @@ python main.py
 - **File upload** button for selecting the `.ini` file.
 - **Textbox** to display the output.
 - **Progress bar** to show the process progress.
+
+---
+
+If anybody finds this useful and wants to pull and improve it, feel free to do so. 
