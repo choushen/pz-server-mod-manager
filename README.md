@@ -15,7 +15,7 @@ I will be updating this project as I work on it. The code currently lives in **o
 ## **TODO**
 
 ### **Must Do**
-- [ ] Add support for scraping vehicle IDs
+- [x] Add support for scraping vehicle IDs
 - [ ] Remove unused packages
 - [ ] Deadwood the codebase
 - [x] Output mod names **(Done)**
@@ -26,10 +26,10 @@ I will be updating this project as I work on it. The code currently lives in **o
 - [ ] Error handling for empty entries
 
 ### **Should Have**
+- [ ] Add some caching (?)
 - [ ] Make it easier to paste multiple links
-- [ ] Highlight the links that are invalid
+- [ ] Highlight the links that are invalid/empty
 - [ ] Highlight the links that are duplicates
-- [ ] Highlight the links that are empty
 
 ### **Could Have**
 - [ ] A way to look up mods using the Steam API
