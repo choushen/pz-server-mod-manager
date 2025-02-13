@@ -112,23 +112,9 @@ class MainWindow(QMainWindow):
             vehicle_id_xpath: str = "//div[@class=\"workshopItemDescription\"]//br//following-sibling::text()[contains(., \"Vehicle IDs:\")]"
             
             for link in links:
-                # Get workshop IDs
-                workshop_id: str = link.split("/")[5].strip("?id=")
-                workshop_id_str += workshop_id + ";"
-                # Get mod IDs
-                response: requests.Response = requests.get(link, headers=headers)
-                tree: HtmlElement = html.fromstring(response.content)
-                mod_id: list[str] = tree.xpath(mod_id_xpath)
-                mod_name_str += mod_id[0].split("Mod ID: ")[-1] + ";"
-                # Get vehicle IDs
-                vehicle_id: list[str] = tree.xpath(vehicle_id_xpath)
-                if vehicle_id:
-                    vehicle_id_str += vehicle_id[0].split("Vehicle IDs: ")[-1].replace(', ', ";") + ";"
-                else:
-                    print("No vehicle IDs found.")
-
-
-            self.output_box.setText(f"{vehicle_id_str}\n{workshop_id_str}\n{mod_name_str}")
+                workshop_id= link.split("/")[5].strip("?id=")
+                mystr += workshop_id + ";"
+            self.output_box.setText(mystr)
         
 
 class WorkshopLinkInputBox(QTextEdit):
@@ -175,11 +161,6 @@ def main():
     window.show()  # Show the main window
     sys.exit(app.exec())  # Start the event loop
 
-
-
-
-
-    
 
 
 
