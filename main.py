@@ -1,8 +1,9 @@
 import sys
 from typing import List
-from bs4 import BeautifulSoup
 import requests
-
+from requests_html import HTMLSession, HTMLResponse
+from lxml import html
+from lxml.html import HtmlElement
 from PySide6.QtWidgets import (QApplication, QWidget, QComboBox, QDialog, QDialogButtonBox, QGridLayout, QGroupBox, QFormLayout, QHBoxLayout, QLabel, QLineEdit, QMenu, QMenuBar, QPushButton, QSpinBox, QTextEdit, QVBoxLayout, QMainWindow, QMessageBox)
 from PySide6.QtGui import QTextOption
 from PySide6.QtCore import Qt
@@ -52,7 +53,7 @@ class MainWindow(QMainWindow):
         title_label: QLabel = QLabel()
         title_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         title_label.setStyleSheet("font-size: 16px; font-weight: bold;")  
-        title_label.setText("Project Zomboid Mod Loader v0.1")
+        title_label.setText("Project Zomboid Mod Loader v0.2")
 
         # Create the instructions label
         instructions_label: QLabel = QLabel()
@@ -86,7 +87,7 @@ class MainWindow(QMainWindow):
         self.output_box.setReadOnly(True)
         self.output_box.setStyleSheet("background-color: #f0f0f0; padding: 10px; border-radius: 8px; color: black;")
         self.output_box.setWordWrapMode(QTextOption.WrapAtWordBoundaryOrAnywhere)
-        self.output_box.setMaximumHeight(50)  # Limits vertical expansion
+        self.output_box.setMaximumHeight(75)  # Limits vertical expansion
 
 
         # Construct the main layout
@@ -102,22 +103,24 @@ class MainWindow(QMainWindow):
 
 
     def extract_links(self) -> None:
+            headers: dict  = {"User-Agent": "Mozilla/5.0"}  # Avoid bot detection
             links: list[str] = self.workshop_link_input_box.get_text()
             workshop_id_str: str = "WorkshopItems="
-            # mod_name_str: str = "Mods="
-            
-            # Call bs4 to extract the workshop ID from the link
+            mod_name_str: str = "Mods="
+            vehicle_id_str: str = "VehicleIDs="
+            mod_id_xpath: str =  "//div[@class=\"workshopItemDescription\"]//br//following-sibling::text()[contains(., \"Mod ID:\")]"
+            vehicle_id_xpath: str = "//div[@class=\"workshopItemDescription\"]//br//following-sibling::text()[contains(., \"Vehicle IDs:\")]"
             
             for link in links:
                 workshop_id= link.split("/")[5].strip("?id=")
-                workshop_id_str += workshop_id + ";"
-            self.output_box.setText(workshop_id_str)
+                mystr += workshop_id + ";"
+            self.output_box.setText(mystr)
         
 
 class WorkshopLinkInputBox(QTextEdit):
     def __init__(self) -> None:
         super().__init__()
-        self.setPlaceholderText("e.g. https://steamcommunity.com/sharedfiles/filedetails/?id=3413150945\n       https://steamcommunity.com/sharedfiles/filedetails/?id=3413150945")
+        self.setPlaceholderText("e.g. https://steamcommunity.com/sharedfiles/filedetails/?id=3413150945\n       https://steamcommunity.com/sharedfiles/filedetails/?id=3409287192")
     
     def get_text(self) -> str:
         my_string_list: str = self.toPlainText().strip().split("\n")
@@ -158,17 +161,6 @@ def main():
     window.show()  # Show the main window
     sys.exit(app.exec())  # Start the event loop
 
-    # XPATH: //div[@class="workshopItemDescription"]//br//following-sibling::text()[contains(., "Mod ID:")]
-
-    # url: str = "https://steamcommunity.com/sharedfiles/filedetails/?id=3413150945"
-    # page: requests.Response = requests.get(url)
-    # print("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwdasdfuenroivdfasdk,[adaklwdqwdkap[dasp]]")
-    # print(page.status_code)
-    # print(page.text)
-    # print(url)
-    # print("Hello JY")
-
-    
 
 
 

@@ -1,1 +1,16 @@
+# PyInstaller build directories
+/build/
+*.spec
+
+# Windows Executables
+*.exe
+*.dll
+*.pyd
+
+# macOS Executables
+*.app
+*.dmg
+
+# PyInstaller Logs
+_pycache_/
 pzomboid-server-mod-manager\.mypy_cache
