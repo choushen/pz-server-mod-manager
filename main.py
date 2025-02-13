@@ -86,7 +86,7 @@ class MainWindow(QMainWindow):
         self.output_box.setText("Output will be displayed here.")
         self.output_box.setReadOnly(True)
         self.output_box.setStyleSheet("background-color: #f0f0f0; padding: 10px; border-radius: 8px; color: black;")
-        self.output_box.setWordWrapMode(QTextOption.WrapAtWordBoundaryOrAnywhere)
+        self.output_box.setWordWrapMode(QTextOption.WrapMode.WordWrap)
         self.output_box.setMaximumHeight(75)  # Limits vertical expansion
 
 
@@ -104,7 +104,7 @@ class MainWindow(QMainWindow):
 
     def extract_links(self) -> None:
             headers: dict  = {"User-Agent": "Mozilla/5.0"}  # Avoid bot detection
-            links: list[str] = self.workshop_link_input_box.get_text()
+            links: list[str] = self.workshop_link_input_box.get_lines()
             workshop_id_str: str = "WorkshopItems="
             mod_name_str: str = "Mods="
             vehicle_id_str: str = "VehicleIDs="
@@ -136,8 +136,8 @@ class WorkshopLinkInputBox(QTextEdit):
         super().__init__()
         self.setPlaceholderText("e.g. https://steamcommunity.com/sharedfiles/filedetails/?id=3413150945\n       https://steamcommunity.com/sharedfiles/filedetails/?id=3409287192")
     
-    def get_text(self) -> str:
-        my_string_list: str = self.toPlainText().strip().split("\n")
+    def get_lines(self) -> List[str]:
+        my_string_list: list[str] = self.toPlainText().strip().split("\n")
         return my_string_list
 
 
